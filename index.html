@@ -9,13 +9,143 @@
   <body class="">
     <div class="w-2/3">
       <header class="p-3 bg-blue-700 text-white flex gap-3 items-center">
-        <img src="./assets/icons/Menu.svg" alt="menu" />
+        <!-- <img src="./assets/icons/Menu.svg" alt="menu" /> -->
+        <input type="image" src="./assets/icons/Menu.svg" />
         <p class="grow">My To-Do Tasks</p>
-        <input type="text" class="p-1" placeholder="Search" />
-        <img src="./assets/icons/filter.png" alt="filter" />
-        <img src="./assets/icons/Add Square.svg" alt="add" />
+        <div class="relative">
+          <input
+            type="text"
+            class="p-1 pl-10 w-full opacity-50 outline-none text-black"
+            placeholder="Search"
+          />
+          <input
+            type="image"
+            class="absolute top-1 left-1 z-10"
+            src="./assets/icons/Search 2.svg"
+            alt="Search"
+          />
+        </div>
+        <input type="image" src="./assets/icons/filter.png" />
+        <input type="image" src="./assets/icons/Add Square.svg" />
+        <!-- <img src="./assets/icons/filter.png" alt="filter" /> -->
+        <!-- <img src="./assets/icons/Add Square.svg" alt="add" /> -->
       </header>
-      <main></main>
+      <main>
+        <table class="w-full">
+          <thead>
+            <th class="p-5 border-2">Task Name</th>
+            <th class="p-5 border-2">Priority</th>
+            <th class="p-5 border-2">Status</th>
+            <th class="p-5 border-2">Deadline</th>
+            <th class="p-5 border-2">Actions</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border-2">walk the dog 1</td>
+              <td class="p-2 border-2">
+                <div class="bg-gray-300 rounded-2xl p-1 pr-3 pl-3 inline-block">
+                  Low
+                </div>
+              </td>
+              <td class="p-2 border-2">
+                <div
+                  class="bg-red-500 text-white rounded-2xl p-1 pr-3 pl-3 inline-block"
+                >
+                  To Do
+                </div>
+              </td>
+              <td class="p-2 border-2"><div></div></td>
+              <td class="p-2 border-2">
+                <input
+                  type="image"
+                  class="bg-red-500 p-1 rounded"
+                  src="./assets/icons/Delete 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-blue-600 p-1 rounded"
+                  src="./assets/icons/Edit 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-gray-500 p-1 rounded"
+                  src="./assets/icons/Show.png"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 border-2">walk the dog 2</td>
+              <td class="p-2 border-2">
+                <div
+                  class="bg-yellow-500 rounded-2xl p-1 pr-3 pl-3 inline-block"
+                >
+                  Medium
+                </div>
+              </td>
+              <td class="p-2 border-2">
+                <div
+                  class="bg-yellow-500 rounded-2xl p-1 pr-3 pl-3 inline-block"
+                >
+                  Doing
+                </div>
+              </td>
+              <td class="p-2 border-2"><div></div></td>
+              <td class="p-2 border-2">
+                <input
+                  type="image"
+                  class="bg-red-500 p-1 rounded"
+                  src="./assets/icons/Delete 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-blue-600 p-1 rounded"
+                  src="./assets/icons/Edit 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-gray-500 p-1 rounded"
+                  src="./assets/icons/Show.png"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 border-2">walk the dog 3</td>
+              <td class="p-2 border-2">
+                <div
+                  class="bg-red-500 text-white rounded-2xl p-1 pr-3 pl-3 inline-block"
+                >
+                  High
+                </div>
+              </td>
+              <td class="p-2 border-2">
+                <div
+                  class="bg-green-500 text-white rounded-2xl p-1 pr-3 pl-3 inline-block"
+                >
+                  Done
+                </div>
+              </td>
+              <td class="p-2 border-2"><div></div></td>
+              <td class="p-2 border-2">
+                <input
+                  type="image"
+                  class="bg-red-500 p-1 rounded"
+                  src="./assets/icons/Delete 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-blue-600 p-1 rounded"
+                  src="./assets/icons/Edit 1.png"
+                />
+                <input
+                  type="image"
+                  class="bg-gray-500 p-1 rounded"
+                  src="./assets/icons/Show.png"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
       <footer></footer>
     </div>
   </body>
