@@ -15,7 +15,7 @@
     <div class="w-2/3">
       <header class="p-3 bg-blue-700 text-white flex gap-3 items-center">
         <input type="image" src="./assets/icons/Menu.svg" />
-        <p class="grow">My To-Do Tasks</p>
+        <p class="grow text-lg">My To-Do Tasks</p>
         <div class="relative">
           <input
             type="text"
@@ -30,7 +30,11 @@
           />
         </div>
         <input type="image" src="./assets/icons/filter.png" />
-        <input type="image" src="./assets/icons/Add Square.svg" />
+        <input
+          type="image"
+          onclick="showAddModal()"
+          src="./assets/icons/Add Square.svg"
+        />
       </header>
       <main>
         <table class="w-full">
@@ -165,12 +169,19 @@
       </footer>
     </div>
     <div
-      class="absolute left-0 w-screen h-screen blur bg-black opacity-65 z-10"
+      id="overlay"
+      class="absolute left-0 w-screen h-screen blur bg-black opacity-65 z-10 hidden"
+      onclick="closeModal()"
     ></div>
-    <div class="w-1/4 absolute left-auto top-auto z-20 bg-white">
+    <div
+      id="addModal"
+      class="w-1/4 absolute left-auto top-auto z-20 bg-white hidden"
+    >
       <header class="relative p-2">
-        <h2 class="text-center text-2xl mb-3">Add To Do</h2>
-        <span class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
+        <h2 class="text-center text-2xl mb-3">Add To-Do</h2>
+        <span
+          class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
+          onclick="closeModal()"
           >&times;</span
         >
         <hr />
