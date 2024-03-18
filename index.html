@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css"
+    />
+    <script src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
     <link rel="stylesheet" href="./output.css" />
   </head>
-  <body class="w-screen h-screen flex justify-center items-center">
+  <body class="w-screen h-screen flex justify-center items-center relative">
     <div class="w-2/3">
       <header class="p-3 bg-blue-700 text-white flex gap-3 items-center">
-        <!-- <img src="./assets/icons/Menu.svg" alt="menu" /> -->
         <input type="image" src="./assets/icons/Menu.svg" />
         <p class="grow">My To-Do Tasks</p>
         <div class="relative">
@@ -27,8 +31,6 @@
         </div>
         <input type="image" src="./assets/icons/filter.png" />
         <input type="image" src="./assets/icons/Add Square.svg" />
-        <!-- <img src="./assets/icons/filter.png" alt="filter" /> -->
-        <!-- <img src="./assets/icons/Add Square.svg" alt="add" /> -->
       </header>
       <main>
         <table class="w-full">
@@ -162,5 +164,73 @@
         </a>
       </footer>
     </div>
+    <div
+      class="absolute left-0 w-screen h-screen blur bg-black opacity-65 z-10"
+    ></div>
+    <div class="w-1/4 absolute left-auto top-auto z-20 bg-white">
+      <header class="relative p-2">
+        <h2 class="text-center text-2xl mb-3">Add To Do</h2>
+        <span class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
+          >&times;</span
+        >
+        <hr />
+      </header>
+      <main class="py-3 px-8">
+        <form class="flex flex-col gap-4 mb-3">
+          <label class="">
+            <span class="inline-block w-24">Task Name :</span>
+            <input
+              type="text"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+              placeholder="Enter Task Name"
+              required
+            />
+          </label>
+          <label>
+            <span class="inline-block w-24">Priority :</span>
+            <select
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium>">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </label>
+          <label>
+            <span class="inline-block w-24">Deadline :</span>
+            <div class="relative inline-block">
+              <input
+                type="text"
+                id="Deadline"
+                class="border shadow-xl outline-none p-1 ml-2 rounded-md cursor-pointer hover:shadow-2xl"
+                data-jdp-min-date="today"
+                placeholder="Select Deadline"
+                readonly
+              />
+              <img
+                class="absolute top-1 right-1 cursor-pointer"
+                src="./assets/icons/Calender 2.svg"
+                alt="Calender"
+              />
+            </div>
+          </label>
+        </form>
+        <hr />
+      </main>
+      <footer class="flex justify-center gap-4 p-3">
+        <button
+          class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+        >
+          Add
+        </button>
+        <button
+          class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+        >
+          Cancel
+        </button>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
   </body>
 </html>
