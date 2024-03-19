@@ -171,7 +171,7 @@
     <div
       id="overlay"
       class="absolute left-0 w-screen h-screen blur bg-black opacity-65 z-10 hidden"
-      onclick="closeModal()"
+      onclick="closeAddModal()"
     ></div>
     <div
       id="addModal"
@@ -181,16 +181,17 @@
         <h2 class="text-center text-2xl mb-3">Add To-Do</h2>
         <span
           class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
-          onclick="closeModal()"
+          onclick="closeAddModal()"
           >&times;</span
         >
         <hr />
       </header>
       <main class="py-3 px-8">
-        <form class="flex flex-col gap-4 mb-3">
+        <form id="addForm" class="flex flex-col gap-4 mb-1">
           <label class="">
             <span class="inline-block w-24">Task Name :</span>
             <input
+              name="taskName"
               type="text"
               class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
               placeholder="Enter Task Name"
@@ -200,10 +201,11 @@
           <label>
             <span class="inline-block w-24">Priority :</span>
             <select
+              name="priority"
               class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
             >
               <option value="Low">Low</option>
-              <option value="Medium>">Medium</option>
+              <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
           </label>
@@ -211,6 +213,7 @@
             <span class="inline-block w-24">Deadline :</span>
             <div class="relative inline-block">
               <input
+                name="deadline"
                 type="text"
                 id="Deadline"
                 class="border shadow-xl outline-none p-1 ml-2 rounded-md cursor-pointer hover:shadow-2xl"
@@ -225,21 +228,36 @@
               />
             </div>
           </label>
+          <hr />
+          <div class="flex justify-center gap-4 p-2">
+            <input
+              type="submit"
+              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+              value="Add"
+            />
+            <input
+              type="button"
+              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+              onclick="closeAddModal()"
+              value="Cancel"
+            />
+          </div>
         </form>
-        <hr />
       </main>
-      <footer class="flex justify-center gap-4 p-3">
+      <!-- <footer class="flex justify-center gap-4 p-3">
         <button
+          type="submit"
           class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
         >
           Add
         </button>
         <button
           class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+          onclick="closeAddModal()"
         >
           Cancel
         </button>
-      </footer>
+      </footer> -->
     </div>
 
     <script src="./script.js"></script>
