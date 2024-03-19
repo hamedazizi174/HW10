@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        yekan: ["yekan", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
