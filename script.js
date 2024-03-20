@@ -7,6 +7,7 @@ const Deadline = document.getElementById("Deadline");
 const tbody = document.querySelector("tbody");
 
 const storagedToDos = "To Dos";
+let id = 0;
 
 const toDos = JSON.parse(localStorage.getItem(storagedToDos)) || [];
 
@@ -18,12 +19,14 @@ function showAddModal() {
 function closeAddModal() {
   addModal.classList.add("hidden");
   overlay.classList.add("hidden");
+  addForm.reset();
 }
 
 function addDataToLocalStorage(event) {
   event.preventDefault();
   const { taskName, priority, deadline } = event.target;
   const toDo = {
+    id,
     taskName: taskName.value,
     priority: priority.value,
     status: "To Do",
@@ -33,9 +36,11 @@ function addDataToLocalStorage(event) {
   localStorage.setItem(storagedToDos, JSON.stringify(toDos));
   closeAddModal();
   renderRows();
+  id++;
 }
 
 function renderRows() {
+  tbody.innerHTML = "";
   toDos.forEach((toDo) => {
     renderRow(toDo);
   });
@@ -56,8 +61,10 @@ function renderRow(toDo) {
       break;
     case "Medium":
       priorityDIV.classList.add("bg-yellow-400");
+      break;
     case "High":
       priorityDIV.classList.add("bg-red-500", "text-white");
+      break;
   }
   priorityDIV.innerText = toDo.priority;
 
@@ -112,12 +119,12 @@ function renderRow(toDo) {
     "px-2",
     "m-1",
     "rounded",
-    "hover:bg-red-600",
-    "hover:shadow-red-200",
-    "active:bg-red-700"
+    "shadow-lg",
+    "hover:bg-red-700",
+    "hover:shadow-red-400",
+    "active:bg-red-900"
   );
-
-  // hover:bg-green-600 hover:shadow-green-200 active:bg-green-700
+  deleteBTN.addEventListener("click", deleteRow);
 
   const editBTN = document.createElement("input");
   editBTN.type = "image";
@@ -128,9 +135,10 @@ function renderRow(toDo) {
     "px-2",
     "m-1",
     "rounded",
-    "hover:bg-blue-600",
-    "hover:shadow-blue-200",
-    "active:bg-blue-700"
+    "shadow-lg",
+    "hover:bg-blue-700",
+    "hover:shadow-blue-400",
+    "active:bg-blue-900"
   );
 
   const showBTN = document.createElement("input");
@@ -142,9 +150,10 @@ function renderRow(toDo) {
     "px-2",
     "m-1",
     "rounded",
-    "hover:bg-gray-600",
-    "hover:shadow-gray-200",
-    "active:bg-gray-700"
+    "shadow-lg",
+    "hover:bg-gray-700",
+    "hover:shadow-gray-400",
+    "active:bg-gray-900"
   );
 
   const actionsTD = document.createElement("td");
@@ -157,6 +166,11 @@ function renderRow(toDo) {
 
   // append Row to tbody
   tbody.append(row);
+}
+
+function deleteRow(event) {
+  event.target.closest("tr").remove();
+  console.log(toDos);
 }
 
 jalaliDatepicker.startWatch({
