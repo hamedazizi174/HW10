@@ -24,14 +24,17 @@ function closeAddModal() {
 
 function addDataToLocalStorage(event) {
   event.preventDefault();
-  const { taskName, priority, deadline } = event.target;
-  const toDo = {
-    id,
-    taskName: taskName.value,
-    priority: priority.value,
-    status: "To Do",
-    deadline: deadline.value,
-  };
+  const toDo = Object.fromEntries(new FormData(event.target));
+  toDo["status"] = "To Do";
+  toDo["id"] = id;
+  // const { taskName, priority, deadline } = event.target;
+  // const toDo = {
+  //   id,
+  //   taskName: taskName.value,
+  //   priority: priority.value,
+  //   status: "To Do",
+  //   deadline: deadline.value,
+  // };
   toDos.push(toDo);
   localStorage.setItem(storagedToDos, JSON.stringify(toDos));
   closeAddModal();
@@ -73,20 +76,43 @@ function renderRow(toDo) {
   priorityTD.append(priorityDIV);
 
   // create Status cell
-  const statusDIV = document.createElement("div");
-  statusDIV.classList.add(
+  // const statusDIV = document.createElement("div");
+  // statusDIV.classList.add(
+  //   "bg-red-500",
+  //   "text-white",
+  //   "rounded-2xl",
+  //   "py-1",
+  //   "px-3",
+  //   "inline-block"
+  // );
+  // statusDIV.innerText = toDo.status;
+  const ToDoStatus = document.createElement("option");
+  ToDoStatus.value = "To Do";
+  ToDoStatus.innerText = "To Do";
+  const DoingStatus = document.createElement("option");
+  DoingStatus.value = "Doing";
+  DoingStatus.innerText = "Doing";
+  const DoneStatus = document.createElement("option");
+  DoneStatus.value = "Done";
+  DoneStatus.innerText = "Done";
+  const statusSelect = document.createElement("select");
+  statusSelect.classList.add(
     "bg-red-500",
     "text-white",
     "rounded-2xl",
     "py-1",
-    "px-3",
-    "inline-block"
+    "pl-3",
+    "pr-1",
+    "inline-block",
+    "outline-none"
   );
-  statusDIV.innerText = toDo.status;
+  statusSelect.append(ToDoStatus, DoingStatus, DoneStatus);
+  statusSelect.addEventListener("click", changeStatus);
 
   const statusTD = document.createElement("td");
   statusTD.classList.add("p-2", "text-center", "border-2");
-  statusTD.append(statusDIV);
+  statusTD.append(statusSelect);
+  // statusTD.append(statusDIV);
 
   // create Deadline cell
   const deadlineDIV = document.createElement("div");
@@ -124,7 +150,7 @@ function renderRow(toDo) {
     "hover:shadow-red-400",
     "active:bg-red-900"
   );
-  deleteBTN.addEventListener("click", deleteRow);
+  deleteBTN.addEventListener("click", (e) => deleteRow(toDo.id, e));
 
   const editBTN = document.createElement("input");
   editBTN.type = "image";
@@ -168,9 +194,32 @@ function renderRow(toDo) {
   tbody.append(row);
 }
 
-function deleteRow(event) {
+function changeStatus(event) {
+  const select = event.target;
+  switch (select.value) {
+    case "To Do":
+      select.classList.remove("bg-yellow-400");
+      select.classList.add("bg-red-500", "text-white");
+      break;
+    case "Doing":
+      select.classList.remove("text-white");
+      select.classList.add("bg-yellow-400", "text-black");
+      break;
+    case "Done":
+      select.classList.remove("bg-yellow-400", "bg-red-500");
+      select.classList.add("bg-green-600", "text-white");
+      break;
+  }
+}
+
+function deleteRow(rowID, event) {
   event.target.closest("tr").remove();
-  console.log(toDos);
+  toDos.forEach((toDo, index) => {
+    if (rowID === toDo.id) {
+      toDos.splice(index, 1);
+      localStorage.setItem(storagedToDos, JSON.stringify(toDos));
+    }
+  });
 }
 
 jalaliDatepicker.startWatch({
