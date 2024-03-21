@@ -2,10 +2,13 @@
 
 const addModal = document.getElementById("addModal");
 const editModal = document.getElementById("editModal");
+const showModal = document.getElementById("showModal");
 const overlay = document.getElementById("overlay");
 const addForm = document.getElementById("addForm");
 const editForm = document.getElementById("editForm");
+const showForm = document.getElementById("showForm");
 const Deadline = document.getElementById("Deadline");
+const editDeadline = document.getElementById("editDeadline");
 const tbody = document.querySelector("tbody");
 
 const storagedToDos = "To Dos";
@@ -25,6 +28,11 @@ function showEditModal() {
   overlay.classList.remove("hidden");
 }
 
+function showShowModal() {
+  showModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
 function closeAddModal() {
   addModal.classList.add("hidden");
   overlay.classList.add("hidden");
@@ -35,6 +43,12 @@ function closeEditModal() {
   editModal.classList.add("hidden");
   overlay.classList.add("hidden");
   editForm.reset();
+}
+
+function closeShowModal() {
+  showModal.classList.add("hidden");
+  overlay.classList.add("hidden");
+  showForm.reset();
 }
 
 function addDataToLocalStorage(event) {
@@ -173,6 +187,7 @@ function renderRow(toDo) {
     "hover:shadow-gray-400",
     "active:bg-gray-900"
   );
+  showBTN.addEventListener("click", () => showTODO(toDo));
 
   const actionsTD = document.createElement("td");
   actionsTD.classList.add("p-2", "text-center", "border-2");
@@ -232,12 +247,24 @@ function editToDo(event) {
   renderRows();
 }
 
+function showTODO(toDo) {
+  showShowModal();
+  showForm.taskName.value = toDo.taskName;
+  showForm.priority.value = toDo.priority;
+  showForm.status.value = toDo.status;
+  showForm.deadline.value = toDo.deadline;
+}
+
 jalaliDatepicker.startWatch({
   minDate: "attr",
 });
 
 Deadline.addEventListener("click", () => {
   jalaliDatepicker.show(Deadline);
+});
+
+editDeadline.addEventListener("click", () => {
+  jalaliDatepicker.show(editDeadline);
 });
 
 addForm.addEventListener("submit", addDataToLocalStorage);
