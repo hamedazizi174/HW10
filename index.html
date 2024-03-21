@@ -210,6 +210,7 @@
               <option value="High">High</option>
             </select>
           </label>
+          <input name="status" type="text" class="hidden" value="To Do" />
           <label>
             <span class="inline-block w-24">Deadline :</span>
             <div class="relative inline-block">
@@ -229,12 +230,94 @@
               />
             </div>
           </label>
+          <input name="id" type="text" class="hidden" />
           <hr />
           <div class="flex justify-center gap-4 p-2">
             <input
               type="submit"
               class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
               value="Add"
+            />
+            <input
+              type="button"
+              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+              onclick="closeAddModal()"
+              value="Cancel"
+            />
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="editModal" class="w-1/4 absolute top-1/4 z-20 bg-white hidden">
+      <header class="relative p-2">
+        <h2 class="text-center text-2xl mb-3">Edit To-Do</h2>
+        <span
+          class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
+          onclick="closeAddModal()"
+          >&times;</span
+        >
+        <hr />
+      </header>
+      <main class="py-3 px-8">
+        <form id="editForm" class="flex flex-col gap-4 mb-1">
+          <label class="">
+            <span class="inline-block w-24">Task Name :</span>
+            <input
+              name="taskName"
+              type="text"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+              placeholder="Enter Task Name"
+              required
+            />
+          </label>
+          <label>
+            <span class="inline-block w-24">Priority :</span>
+            <select
+              name="priority"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </label>
+          <label>
+            <span class="inline-block w-24">Status :</span>
+            <select
+              name="status"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+            >
+              <option value="To Do">To Do</option>
+              <option value="Doing">Doing</option>
+              <option value="Done">Done</option>
+            </select>
+          </label>
+          <label>
+            <span class="inline-block w-24">Deadline :</span>
+            <div class="relative inline-block">
+              <input
+                name="deadline"
+                type="text"
+                id="Deadline"
+                class="border shadow-xl outline-none p-1 ml-2 rounded-md cursor-pointer hover:shadow-2xl"
+                data-jdp-min-date="today"
+                placeholder="Select Deadline"
+                readonly
+              />
+              <img
+                class="absolute top-1 right-1 cursor-pointer"
+                src="./assets/icons/Calender 2.svg"
+                alt="Calender"
+              />
+            </div>
+          </label>
+          <input name="id" type="text" class="hidden" />
+          <hr />
+          <div class="flex justify-center gap-4 p-2">
+            <input
+              type="submit"
+              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+              value="Edit"
             />
             <input
               type="button"
