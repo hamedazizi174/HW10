@@ -12,7 +12,8 @@ const showForm = document.getElementById("showForm");
 const Deadline = document.getElementById("Deadline");
 const editDeadline = document.getElementById("editDeadline");
 const tbody = document.querySelector("tbody");
-const deleteToast = document.getElementById("successDeleteRowToast");
+const deleteToast = document.getElementById("deleteRowToast");
+const editToast = document.getElementById("editRowToast");
 
 const storagedToDos = "To Dos";
 const idKey = "id";
@@ -42,6 +43,13 @@ function showDeleteToast() {
 function showEditModal() {
   editModal.classList.remove("hidden");
   overlay.classList.remove("hidden");
+}
+
+function showEditToast() {
+  editToast.classList.remove("hidden");
+  setTimeout(() => {
+    editToast.classList.add("hidden");
+  }, 3000);
 }
 
 function showShowModal() {
@@ -276,6 +284,7 @@ function editToDo(event) {
   localStorage.setItem(storagedToDos, JSON.stringify(toDos));
   closeEditModal();
   renderRows();
+  showEditToast();
 }
 
 function showTODO(toDo) {
