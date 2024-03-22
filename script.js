@@ -12,6 +12,7 @@ const showForm = document.getElementById("showForm");
 const Deadline = document.getElementById("Deadline");
 const editDeadline = document.getElementById("editDeadline");
 const tbody = document.querySelector("tbody");
+const deleteToast = document.getElementById("successDeleteRowToast");
 
 const storagedToDos = "To Dos";
 const idKey = "id";
@@ -29,6 +30,13 @@ function showAddModal() {
 function showDeleteModal() {
   deleteModal.classList.remove("hidden");
   overlay.classList.remove("hidden");
+}
+
+function showDeleteToast() {
+  deleteToast.classList.remove("hidden");
+  setTimeout(() => {
+    deleteToast.classList.add("hidden");
+  }, 3000);
 }
 
 function showEditModal() {
@@ -248,6 +256,7 @@ function deleteToDo(row, event) {
   toDos.splice(toDOIndex, 1);
   localStorage.setItem(storagedToDos, JSON.stringify(toDos));
   closeDeleteModal();
+  showDeleteToast();
 }
 
 function editRow(toDo) {
