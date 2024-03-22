@@ -174,8 +174,8 @@
     </div>
     <div
       id="overlay"
-      class="absolute left-0 w-screen h-screen blur bg-black opacity-65 z-10 hidden"
-      onclick="closeAddModal(); closeEditModal(); closeShowModal();"
+      class="absolute w-screen h-screen blur bg-black opacity-65 z-10 hidden"
+      onclick="closeAddModal(); closeEditModal(); closeShowModal(); closeDeleteModal();"
     ></div>
     <div id="addModal" class="w-1/4 absolute top-1/4 z-20 bg-white hidden">
       <header class="relative p-2">
@@ -189,7 +189,7 @@
       </header>
       <main class="py-3 px-8">
         <form id="addForm" class="flex flex-col gap-4 mb-1">
-          <label class="">
+          <label>
             <span class="inline-block w-24">Task Name :</span>
             <input
               name="taskName"
@@ -235,13 +235,89 @@
           <div class="flex justify-center gap-4 p-2">
             <input
               type="submit"
-              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
               value="Add"
             />
             <input
               type="button"
-              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
               onclick="closeAddModal()"
+              value="Cancel"
+            />
+          </div>
+        </form>
+      </main>
+    </div>
+    <div id="deleteModal" class="w-1/4 absolute top-20 z-20 bg-white hidden">
+      <header class="relative p-2">
+        <h2 class="text-center text-2xl mb-3">Delete To-Do</h2>
+        <span
+          class="absolute top-0 right-3 p-1 text-3xl cursor-pointer"
+          onclick="closeDeleteModal()"
+          >&times;</span
+        >
+        <hr />
+      </header>
+      <main class="py-3 px-8">
+        <form id="deleteForm" class="flex flex-col gap-4 mb-1">
+          <h3 class="text-center text-lg mb-3">
+            Are you sure that you want delete this To-Do?
+          </h3>
+          <label>
+            <span class="inline-block w-24">Task Name :</span>
+            <input
+              name="taskName"
+              type="text"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+              readonly
+            />
+          </label>
+          <label>
+            <span class="inline-block w-24">Priority :</span>
+            <input
+              name="priority"
+              type="text"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+              readonly
+            />
+          </label>
+          <label>
+            <span class="inline-block w-24">Status :</span>
+            <input
+              name="status"
+              type="text"
+              class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+              readonly
+            />
+          </label>
+          <label>
+            <span class="inline-block w-24">Deadline :</span>
+            <div class="relative inline-block">
+              <input
+                name="deadline"
+                type="text"
+                class="border shadow-xl outline-none p-1 ml-2 rounded-md hover:shadow-2xl"
+                readonly
+              />
+              <img
+                class="absolute top-1 right-1 cursor-pointer"
+                src="./assets/icons/Calender 2.svg"
+                alt="Calender"
+              />
+            </div>
+          </label>
+          <input name="id" type="text" class="hidden" />
+          <hr />
+          <div class="flex justify-center gap-4 p-2">
+            <input
+              type="submit"
+              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+              value="Delete"
+            />
+            <input
+              type="button"
+              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+              onclick="closeDeleteModal()"
               value="Cancel"
             />
           </div>
@@ -260,7 +336,7 @@
       </header>
       <main class="py-3 px-8">
         <form id="editForm" class="flex flex-col gap-4 mb-1">
-          <label class="">
+          <label>
             <span class="inline-block w-24">Task Name :</span>
             <input
               name="taskName"
@@ -316,12 +392,12 @@
           <div class="flex justify-center gap-4 p-2">
             <input
               type="submit"
-              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
+              class="border bg-green-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-green-600 hover:shadow-green-200 active:bg-green-700"
               value="Edit"
             />
             <input
               type="button"
-              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
+              class="border bg-red-500 text-white shadow-xl outline-none py-1 px-3 rounded-md cursor-pointer hover:bg-red-600 hover:shadow-red-200 active:bg-red-700"
               onclick="closeEditModal()"
               value="Cancel"
             />
@@ -341,7 +417,7 @@
       </header>
       <main class="py-3 px-8">
         <form id="showForm" class="flex flex-col gap-4 mb-1">
-          <label class="">
+          <label>
             <span class="inline-block w-24">Task Name :</span>
             <input
               name="taskName"

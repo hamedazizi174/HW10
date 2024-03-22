@@ -1,10 +1,12 @@
 "use strict";
 
 const addModal = document.getElementById("addModal");
+const deleteModal = document.getElementById("deleteModal");
 const editModal = document.getElementById("editModal");
 const showModal = document.getElementById("showModal");
 const overlay = document.getElementById("overlay");
 const addForm = document.getElementById("addForm");
+const deleteForm = document.getElementById("deleteForm");
 const editForm = document.getElementById("editForm");
 const showForm = document.getElementById("showForm");
 const Deadline = document.getElementById("Deadline");
@@ -13,13 +15,19 @@ const tbody = document.querySelector("tbody");
 
 const storagedToDos = "To Dos";
 const idKey = "id";
-let editedToDOIndex;
+let toDOIndex;
+let row;
 
 let id = JSON.parse(localStorage.getItem(idKey)) || 0;
 const toDos = JSON.parse(localStorage.getItem(storagedToDos)) || [];
 
 function showAddModal() {
   addModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
+function showDeleteModal() {
+  deleteModal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 }
 
@@ -37,6 +45,12 @@ function closeAddModal() {
   addModal.classList.add("hidden");
   overlay.classList.add("hidden");
   addForm.reset();
+}
+
+function closeDeleteModal() {
+  deleteModal.classList.add("hidden");
+  overlay.classList.add("hidden");
+  deleteForm.reset();
 }
 
 function closeEditModal() {
@@ -155,7 +169,7 @@ function renderRow(toDo) {
     "hover:shadow-red-400",
     "active:bg-red-900"
   );
-  deleteBTN.addEventListener("click", (e) => deleteRow(toDo.id, e));
+  deleteBTN.addEventListener("click", (e) => deleteRow(toDo, e));
 
   const editBTN = document.createElement("input");
   editBTN.type = "image";
@@ -218,14 +232,22 @@ function statusColor(statusDIV, status) {
   }
 }
 
-function deleteRow(rowID, event) {
-  event.target.closest("tr").remove();
-  toDos.forEach((toDo, index) => {
-    if (rowID === toDo.id) {
-      toDos.splice(index, 1);
-      localStorage.setItem(storagedToDos, JSON.stringify(toDos));
-    }
-  });
+function deleteRow(toDo, event) {
+  showDeleteModal();
+  deleteForm.taskName.value = toDo.taskName;
+  deleteForm.priority.value = toDo.priority;
+  deleteForm.status.value = toDo.status;
+  deleteForm.deadline.value = toDo.deadline;
+  toDOIndex = toDos.indexOf(toDo);
+  row = event.target.closest("tr");
+}
+
+function deleteToDo(row, event) {
+  event.preventDefault();
+  row.remove();
+  toDos.splice(toDOIndex, 1);
+  localStorage.setItem(storagedToDos, JSON.stringify(toDos));
+  closeDeleteModal();
 }
 
 function editRow(toDo) {
@@ -235,13 +257,13 @@ function editRow(toDo) {
   editForm.status.value = toDo.status;
   editForm.deadline.value = toDo.deadline;
   editForm.id.value = toDo.id;
-  editedToDOIndex = toDos.indexOf(toDo);
+  toDOIndex = toDos.indexOf(toDo);
 }
 
 function editToDo(event) {
   event.preventDefault();
   const toDo = Object.fromEntries(new FormData(event.target));
-  toDos[editedToDOIndex] = toDo;
+  toDos[toDOIndex] = toDo;
   localStorage.setItem(storagedToDos, JSON.stringify(toDos));
   closeEditModal();
   renderRows();
@@ -269,5 +291,6 @@ editDeadline.addEventListener("click", () => {
 
 addForm.addEventListener("submit", addDataToLocalStorage);
 editForm.addEventListener("submit", editToDo);
+deleteForm.addEventListener("submit", (e) => deleteToDo(row, e));
 
 renderRows();
