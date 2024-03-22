@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="./output.css" />
   </head>
   <body class="w-screen h-screen flex justify-center relative">
-    <div class="w-2/3">
-      <header class="p-3 bg-blue-700 text-white flex gap-3 items-center">
+    <div class="w-full md:w-[768px] lg:w-[1000px] xl:w-[1200px]">
+      <header class="w-full p-3 bg-blue-700 text-white flex gap-3 items-center">
         <input type="image" src="./assets/icons/Menu.svg" />
         <p class="grow text-lg">My To-Do Tasks</p>
         <div class="relative">
@@ -36,7 +36,7 @@
           src="./assets/icons/Add Square.svg"
         />
       </header>
-      <main>
+      <main class="w-full">
         <table class="w-full">
           <thead>
             <th class="p-5 pl-2 border-2 text-left">Task Name</th>
@@ -174,10 +174,13 @@
     </div>
     <div
       id="overlay"
-      class="absolute w-screen h-screen blur bg-black opacity-65 z-10 hidden"
+      class="fixed w-screen h-screen blur bg-black opacity-65 z-10 hidden"
       onclick="closeAddModal(); closeEditModal(); closeShowModal(); closeDeleteModal();"
     ></div>
-    <div id="addModal" class="w-1/4 absolute top-1/4 z-20 bg-white hidden">
+    <div
+      id="addModal"
+      class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white hidden sm:w-96"
+    >
       <header class="relative p-2">
         <h2 class="text-center text-2xl mb-3">Add To-Do</h2>
         <span
@@ -248,7 +251,10 @@
         </form>
       </main>
     </div>
-    <div id="deleteModal" class="w-1/4 absolute top-20 z-20 bg-white hidden">
+    <div
+      id="deleteModal"
+      class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white hidden sm:w-96"
+    >
       <header class="relative p-2">
         <h2 class="text-center text-2xl mb-3">Delete To-Do</h2>
         <span
@@ -324,7 +330,10 @@
         </form>
       </main>
     </div>
-    <div id="editModal" class="w-1/4 absolute top-1/4 z-20 bg-white hidden">
+    <div
+      id="editModal"
+      class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white hidden sm:w-96"
+    >
       <header class="relative p-2">
         <h2 class="text-center text-2xl mb-3">Edit To-Do</h2>
         <span
@@ -405,7 +414,10 @@
         </form>
       </main>
     </div>
-    <div id="showModal" class="w-1/4 absolute top-1/4 z-20 bg-white hidden">
+    <div
+      id="showModal"
+      class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white hidden sm:w-96"
+    >
       <header class="relative p-2">
         <h2 class="text-center text-2xl mb-3">Show To-Do</h2>
         <span
